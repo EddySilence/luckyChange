@@ -3,9 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
-    我就
+    <div class="d-flex flex-column m-5">
+      <div class="d-flex flex-row align-items-center">
+        <div>輸入格數：</div>
+        <input
+          id="input1"
+          type="number"
+          class="form-control"
+          style="width: 70px"
+        />
+        <div class="mx-2">X</div>
+        <input
+          id="input2"
+          type="number"
+          class="form-control"
+          style="width: 70px"
+        />
+        <button class="btn btn-success ms-2" onclick="createTable()">
+          確定
+        </button>
+      </div>
+      <div class="overflow-auto mt-2" id="table">
+        <table class="table table-bordered" style="width: 0%">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
   </body>
+
+  <script>
+    let table = $("#table table");
+    function createTable() {
+      console.log(table);
+      $("table tr").remove();
+      let inputNumberX = $("#input1").val(); //獲取使用者輸入值
+      let inputNumberY = $("#input2").val();
+      console.log(inputNumberX);
+      console.log("-------");
+      console.log(inputNumberY);
+      if (
+        inputNumberX === undefined ||
+        inputNumberX === "" ||
+        inputNumberX <= 0 ||
+        inputNumberY === undefined ||
+        inputNumberY === "" ||
+        inputNumberY <= 0
+      ) {
+        alert("錯誤");
+        return;
+      }
+      let html = ``;
+      for (let i = 0; i < inputNumberY; i++) {
+        html += `<tr>`;
+        for (let j = 0; j < inputNumberX; j++) {
+          if (i === 0 || j === 0) {
+            html += `<td><input style="width: 70px" class="form-control" type="number"></td>`;
+          } else {
+            html += `<td></td>`;
+          }
+        }
+        html += `</tr>`;
+      }
+      table.append(html);
+    }
+  </script>
 </html>
