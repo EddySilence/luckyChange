@@ -131,12 +131,8 @@
             table.find("tr").eq(0).find("td").eq(j).find("input").val() ===
             table.find("tr").eq(i).find("td").eq(0).find("input").val()
           ) {
-            table
-              .find("tr")
-              .eq(i)
-              .find("td")
-              .eq(j)
-              .html(`<div class="text-danger">1</div>`);
+            table.find("tr").eq(i).find("td").eq(j).addClass("bg-danger");
+            table.find("tr").eq(i).find("td").eq(j).html(`<div>1</div>`);
           } else {
             table.find("tr").eq(i).find("td").eq(j).html(`0`);
           }
